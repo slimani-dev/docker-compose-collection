@@ -1,0 +1,20 @@
+{
+    "debug": true,
+    "port": 6002,
+    "appManager": {
+        "driver": "array",
+        "cache": {
+            "enabled": false,
+            "ttl": -1
+        },
+        "array": {
+            "apps": [
+                {
+                    "id": "186810261729",
+                    "key": "U0aPWNsIe0ixlIO7cLXwdRBB5upO8B7m",
+                    "secret": "m7dr31AR2LKgogtPuPsh2zzRKy73EccK"
+                }
+            ]
+        }
+    }
+}
