@@ -1,0 +1,28 @@
+# compose.yaml
+
+services:
+  php:
+    image: dunglas/frankenphp:latest
+    # uncomment the following line if you want to use a custom Dockerfile
+    # build: .
+    # uncomment the following line if you want to run this in a production environment
+    restart: always
+    ports:
+      - "8000:80" # HTTP
+      - "4430:443" # HTTPS
+      - "443:443/udp" # HTTP/3
+    volumes:
+      - ${APP_LOCATION}/:/app/
+      - ./data:/data
+      - ./config:/config
+    # comment the following line in production, it allows to have nice human-readable logs in dev
+    tty: true
+
+# Volumes needed for Caddy certificates and configuration
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  frankenphp:
+    driver: bridge

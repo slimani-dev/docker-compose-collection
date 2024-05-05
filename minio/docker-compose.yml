@@ -1,0 +1,35 @@
+version: '3.7'
+
+# Settings and configurations that are common for all containers
+services:
+  minio:
+    container_name: minio
+    image: quay.io/minio/minio:RELEASE.2024-05-01T01-11-10Z
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minioadmin}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioadmin}
+      # MINIO_DOMAIN==${MINIO_DOMAIN:-minio}
+      - MINIO_SERVER_URL=https://minio
+      - MINIO_BROWSER_REDIRECT_URL=https://admin.minio
+    command: server --console-address ":9001"  /data-{1...2}/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    networks:
+      - minio
+    expose:
+      - "9000"
+      - "9001"
+    volumes:
+      - ./data/data-1:/data-1
+      - ./data/data-2:/data-2
+
+volumes:
+  data-1:
+  data-2:
+
+networks:
+  minio:
+    driver: bridge
+    name: dev
+    external: true

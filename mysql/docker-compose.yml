@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.7'
 services:
   mysql:
     image: mysql:8
@@ -23,3 +23,5 @@ volumes:
 networks:
   mysql:
     driver: bridge
+    name: dev
+    external: true
